@@ -1,4 +1,4 @@
--- print3flipped.hs
+-- Exercises3.hs
 module Exercises3 where
 
 concatExclamation :: String -> String 
