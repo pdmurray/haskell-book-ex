@@ -18,22 +18,43 @@ instance Eq TwoIntegers where
 -- 3.
 data StringOrInt =
     TisAnInt Int
-  | TisAString String
+  | TisAString String deriving Show
+
+instance Eq StringOrInt where
+    (==) (TisAnInt v) (TisAnInt w) = v == w
+    (==) (TisAString v) (TisAString w) = v == w
+    (==) _ _ = False
 
 -- 4.
 data Pair a =
-    Pair a a
+    Pair a a deriving Show
+
+instance Eq a => Eq (Pair a) where
+    (==) (Pair a b) (Pair a' b') = a == a' && b == b'
 
 -- 5.
 data Tuple a b =
-    Tuple a b
+    Tuple a b deriving Show
+
+instance (Eq a, Eq b) => Eq (Tuple a b) where
+    (==) (Tuple a b) (Tuple a' b') = a == a' && b == b'
 
 -- 6.
 data Which a =
     ThisOne a
-  | ThatOne a
+  | ThatOne a deriving Show
+
+instance Eq a => Eq (Which a) where
+    (==) (ThisOne a) (ThisOne a') = a == a'
+    (==) (ThatOne a) (ThatOne a') = a == a'
+    (==) _ _ = False
 
 -- 7.
 data EitherOr a b =
     Hello a
-  | Goodbye b
+  | Goodbye b deriving Show
+
+instance (Eq a, Eq b) => Eq (EitherOr a b) where
+    (==) (Hello a) (Hello a') = a == a'
+    (==) (Goodbye b) (Goodbye b') = b == b'
+    (==) _ _ = False
