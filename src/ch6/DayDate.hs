@@ -1,8 +1,16 @@
 data DayOfWeek =
-    Mon | Tue | Weds | Thu | Fri | Sat | Sun deriving Show
+    Mon | Tue | Weds | Thu | Fri | Sat | Sun
+    deriving (Ord, Show)
 
 data Date =
     Date DayOfWeek Int deriving Show
+
+-- We can order the days of week so that Friday = Best day
+--instance Ord DayOfWeek where
+--    compare Fri Fri = EQ
+--    compare Fri _   = GT
+--    compare _ Fri   = LT
+--    compare _ _     = EQ
 
 instance Eq DayOfWeek where
     (==) Mon Mon = True
