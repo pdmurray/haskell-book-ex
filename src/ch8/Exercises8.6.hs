@@ -48,6 +48,7 @@ dividedBy num denom = go num denom 0
            | otherwise = go (n - d) d (count + 1)
 
 {-
+1.
 
 dividedBy 15 2 =
 go 15 2 0
@@ -55,3 +56,44 @@ go 15 2 0
 
 -}
 
+
+-- 2.
+sumToN :: (Eq a, Num a) => a -> a
+sumToN 0 = 0
+sumToN 1 = 1
+sumToN num = num + sumToN (num - 1)
+
+
+-- 3.
+multRec :: (Integral a) => a -> a -> a
+multRec multA multB = go multA multB 0
+    where go a b acc
+           | b == 0 = acc
+           | otherwise = go a (b - 1) (acc + a) 
+
+
+-- Fixing dividedBy
+data DividedResult = 
+    Result Integer
+    | DividedByZero
+    deriving Show
+
+dividedBy' :: Integer -> Integer -> (DividedResult, DividedResult)
+dividedBy' num denom
+    | denom == 0 = (DividedByZero, DividedByZero)
+    | otherwise = go (abs num) (abs denom) 0 (if (num < 0) then negate else id) (if (denom < 0) then negate else id)
+    where go n d count n1 n2
+           | n < d = (Result (n1 . n2 $ count), Result (n2 n))
+           | otherwise = go (n - d) d (count + 1) n1 n2
+
+
+-- McCarthy 91
+
+mc91 :: (Ord a, Num a) => a -> a
+mc91 n
+    | n > 100 = n - 10
+    | otherwise = mc91 . mc91 $ n + 11
+
+
+-- Numbers into Words
+-- module:  WordNumber.hs
