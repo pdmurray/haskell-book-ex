@@ -2,6 +2,8 @@ module Exercises912 where
 
 import Data.Char
 
+-- Data.Char problems
+
 -- 1. isUpper :: Char -> Bool
 --    toUpper :: Char -> Char
 
@@ -34,3 +36,6 @@ firstLetterCapComposed xs
 
 firstLetterCapPF :: [Char] -> Char
 firstLetterCapPF = toUpper . head
+
+
+-- Ciphers - See Ciphers.hs
