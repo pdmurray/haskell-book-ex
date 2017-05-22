@@ -96,4 +96,26 @@ squishAgain = squishMap id
 -- Prelude> myMaximumBy compare xs
 --   9001
 myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
-myMaximumBy = undefined
+myMaximumBy f (x:xs) = go f xs x
+    where go _ [] acc = acc
+          go f (x:xs) acc
+            | f x acc == GT = go f xs x
+            | otherwise = go f xs acc
+
+
+
+-- myMinimumBy takes a comparison function and a list and returns the least element of the 
+-- list based on the last value that the comparison returned LT for.
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy f (x:xs) = go f xs x
+    where go _ [] acc = acc
+          go f (x:xs) acc
+            | f x acc == LT = go f xs x
+            | otherwise = go f xs acc
+
+
+myMaximum :: (Ord a) => [a] -> a
+myMaximum = myMaximumBy compare
+
+myMinimum :: (Ord a) => [a] -> a
+myMinimum = myMinimumBy compare
