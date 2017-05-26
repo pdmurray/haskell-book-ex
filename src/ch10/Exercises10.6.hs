@@ -1,6 +1,7 @@
 module Exercises106 where
 
 import Data.Time
+import Data.List
 
 data DatabaseItem = DbString String
                   | DbNumber Integer
@@ -43,13 +44,8 @@ sumDb = sum . filterDbNumber
 
 -- 5.
 avgDb :: [DatabaseItem] -> Double
-{-
-avgDb x = dbNumberSum / dbNumberLength
-  where dbNumberSum = fromIntegral $ sumDb x
-        dbNumberLength = fromIntegral (length $ filterDbNumber x)
--}
 avgDb = average . filterDbNumber
 
-average :: (Integral a) => [a] -> Double
+average :: (Real a, Fractional b) => [a] -> b
 average [] = 0.0
-average xs = fromIntegral (sum xs) / fromIntegral (length xs)
+average xs = realToFrac (sum xs) / genericLength xs
