@@ -23,3 +23,16 @@ nouns = ["Dog", "Cat", "Elephant", "Zebra", "Monkey"]
 verbs = ["chases", "claws", "bites", "eats"]
 
 nounVerbCombinations a b = [ (x, y, z) | x <- a, y <- b, z <- a ]
+
+
+-- 2.  This function calculates the average length of the words in a string.
+--     It's Type should be String -> Int
+seekritFunc x =
+    div (sum (map length (words x)))
+        (length (words x))
+
+-- 3.
+seekritFunc' :: (Fractional a) => String -> a
+seekritFunc' x =
+    (/) (realToFrac (sum (map length (words x))))
+        (realToFrac (length (words x)))
