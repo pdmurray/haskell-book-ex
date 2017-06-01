@@ -36,3 +36,11 @@ seekritFunc' :: (Fractional a) => String -> a
 seekritFunc' x =
     (/) (realToFrac (sum (map length (words x))))
         (realToFrac (length (words x)))
+
+
+
+-- Rewriting Functions using Folds
+
+-- 1. 
+myOr :: [Bool] -> Bool
+myOr = foldr (||) False
