@@ -44,3 +44,8 @@ seekritFunc' x =
 -- 1. 
 myOr :: [Bool] -> Bool
 myOr = foldr (||) False
+
+
+-- 2.
+myAny :: (a -> Bool) -> [a] -> Bool 
+myAny f = foldr (\a b -> f a || b) False
