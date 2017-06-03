@@ -49,3 +49,56 @@ myOr = foldr (||) False
 -- 2.
 myAny :: (a -> Bool) -> [a] -> Bool 
 myAny f = foldr (\a b -> f a || b) False
+
+
+-- 3.
+myElem :: Eq a => a -> [a] -> Bool
+myElem x = foldr (\a b -> x == a || b) False
+
+myElem' :: Eq a => a -> [a] -> Bool
+myElem' x = any (== x)
+
+
+-- 4.
+myReverse :: [a] -> [a]
+myReverse = foldl (flip (:)) []
+
+
+-- 5.
+myMap :: (a -> b) -> [a] -> [b]
+myMap f = foldr (\a b -> f a : b ) []
+
+
+-- 6.
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f = foldr (\a b -> if f a then a : b else b) [] 
+
+
+-- 7.
+squish :: [[a]] -> [a]
+squish = foldr (++) []
+
+
+-- 8.
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap f = foldr (\a b -> f a ++ b) []
+squishMap' f = foldr ((++) . f) []
+
+
+-- 9.
+squishAgain :: [[a]] -> [a]
+squishAgain = squishMap id
+
+
+-- 10.
+myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+myMaximumBy _ []     = undefined
+myMaximumBy f (x:xs) = foldl (\a b -> if f a b == GT then a else b) x xs
+
+-- myMaximumBy f = foldl1 (\a b -> if f a b == GT then a else b)
+
+
+-- 11.
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy _ []     = undefined
+myMinimumBy f (x:xs) = foldl (\a b -> if f a b == LT then a else b) x xs
