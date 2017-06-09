@@ -2,6 +2,8 @@ module Exercises116 where
 
 data Price = Price Integer deriving (Eq, Show)
 
+data Size = Size Integer deriving (Eq, Show)
+
 data Manufacturer =
     Mini
   | Mazda
@@ -16,10 +18,35 @@ data Airline =
 
 data Vehicle =
     Car Manufacturer Price
-  | Plane Airline
+  | Plane Airline Size
   deriving (Eq, Show)
 
 myCar = Car Mini (Price 14000)
 urCar = Car Mazda (Price 20000)
 clownCar = Car Tata (Price 7000)
-doge = Plane PapuAir
+doge = Plane PapuAir (Size 875000)
+
+
+-- Exercises: Vehicles
+
+-- 1.  myCar is type: Vehicle
+
+-- 2.  
+isCar :: Vehicle -> Bool
+isCar (Car _ _) = True
+isCar _ = False
+
+isPlane :: Vehicle -> Bool
+isPlane (Plane _ _) = True
+isPlane _ = False
+
+areCars :: [Vehicle] -> [Bool]
+areCars = map isCar
+
+-- 3.
+getManu :: Vehicle -> Manufacturer
+getManu (Car x _) = x
+
+-- 4.  It will return an exception if this is uses on Plane data.
+
+-- 5.  add size for Plane, see above functions
