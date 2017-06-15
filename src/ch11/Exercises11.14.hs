@@ -1,0 +1,63 @@
+module Exercises1114 where
+
+-- Exponentiation in what order?
+
+data Quantum =
+      Yes
+    | No
+    | Both
+    deriving (Eq, Show)
+
+convert1 :: Quantum -> Bool 
+convert1 Yes = True
+convert1 No = True
+convert1 Both = True
+
+convert2 :: Quantum -> Bool 
+convert2 Yes = True
+convert2 No = True
+convert2 Both = False
+
+convert3 :: Quantum -> Bool 
+convert3 Yes = True
+convert3 No = False
+convert3 Both = True
+
+convert4 :: Quantum -> Bool 
+convert4 Yes = True
+convert4 No = False
+convert4 Both = False
+
+convert5 :: Quantum -> Bool 
+convert5 Yes = False
+convert5 No = True
+convert5 Both = True
+
+convert6 :: Quantum -> Bool 
+convert6 Yes = False
+convert6 No = True
+convert6 Both = False
+
+convert7 :: Quantum -> Bool 
+convert7 Yes = False
+convert7 No = False
+convert7 Both = True
+
+convert8 :: Quantum -> Bool 
+convert8 Yes = False
+convert8 No = False
+convert8 Both = False
+
+
+-- The Quad
+
+{-
+
+1. 4 + 4 = 8
+2. 4 * 4 = 16
+3. 4 ^ 4 = 256
+4. 2 * 2 * 2 = 8
+5. 2 ^ 2 ^ 2 = 16
+6. 4 ^ 4 ^ 4 = 65536
+
+-}
