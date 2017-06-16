@@ -4,7 +4,7 @@ import Data.Char
 
 -- Loops Int values through a specified range
 modRange :: Int -> Int -> Int -> Int
-modRange min max val = mod ((val-min) (max-min+1)) + min
+modRange min max val = mod (val - min) (max - min + 1) + min
 
 -- 'modRange' for lowercase alphabetic characters
 alphaLower :: Int -> Int

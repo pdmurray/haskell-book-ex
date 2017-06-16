@@ -1,5 +1,7 @@
 module Exercises1118 where
 
+import Data.Char
+
 -- Chapter Exercises
 
 
@@ -15,3 +17,7 @@ data Weekday =
 -- 2.  c
 -- 3.  b
 -- 4.  c
+
+
+-- Ciphers
+
