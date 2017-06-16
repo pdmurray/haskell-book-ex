@@ -69,6 +69,11 @@ testPostorder =
     else putStrLn "postorder failed check"
 
 
+-- Write foldr for BinaryTree
+foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
+foldTree f x y = foldr f x (inorder y)
+
+
 main :: IO () 
 main = do
     testPreorder
