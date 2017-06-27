@@ -1,7 +1,7 @@
 module Exercises1118 where
 
 import Data.Char
-
+import Data.List (intersperse, intercalate)
 -- Chapter Exercises
 
 
@@ -57,3 +57,28 @@ capitalizeWords x = map capitalizeWord $ splitWords x
 
 capitalizeWord :: String -> (String, String)
 capitalizeWord xz@(x:xs) = (xz, toUpper x : xs)
+
+
+-- Language Exercises
+
+-- 1.
+{-
+Prelude> capitalizeWord "Titter"
+"Titter"
+Prelude> capitalizeWord "titter"
+"Titter"
+-}
+capitalizeWord' :: String -> String
+capitalizeWord' [] = []
+capitalizeWord' (x:xs) 
+  | isAlpha x = toUpper x : xs
+  | otherwise = x : capitalizeWord' xs
+
+
+-- 2.
+splitPeriod :: String -> [String]
+splitPeriod = splitter '.'
+
+
+capitalizeParagraph :: String -> String
+capitalizeParagraph x = intercalate "." $ map capitalizeWord' $ splitPeriod x
