@@ -81,4 +81,4 @@ splitPeriod = splitter '.'
 
 
 capitalizeParagraph :: String -> String
-capitalizeParagraph x = intercalate "." $ map capitalizeWord' $ splitPeriod x
+capitalizeParagraph x = intercalate "." . map capitalizeWord' $ splitPeriod x
