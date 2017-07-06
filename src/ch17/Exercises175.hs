@@ -51,7 +51,6 @@ summed = fmap sum $ (,) <$> x4 <*> y4
 
 
 -- Identity
-
 newtype Identity a = Identity a 
     deriving (Eq, Ord, Show)
 
@@ -61,3 +60,25 @@ instance Functor Identity where
 instance Applicative Identity where 
     pure = Identity
     (<*>) (Identity f) (Identity a) = Identity (f a)
+
+
+-- Constant
+newtype Constant a b =
+    Constant { getConstant :: a } 
+    deriving (Eq, Ord, Show)
+
+instance Functor (Constant a) where
+    fmap _ (Constant a) = Constant a
+
+instance Monoid a => Applicative (Constant a) where
+    pure _ = Constant mempty
+    (<*>) (Constant f) (Constant x) = Constant $ mappend f x
+
+
+-- Fixer Upper
+
+-- 1.
+f1 = const <$> Just "Hello" <*> pure "World"
+
+-- 2.
+f2 = (,,,) <$> Just 90 <*> Just 10 <*> Just "Tierness" <*> pure [1, 2, 3]
