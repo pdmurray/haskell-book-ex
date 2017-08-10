@@ -164,4 +164,40 @@ eitherMaybe'' f e = Just (either' undefined f e)
 
 
 
--- Unfolds
+-- Write your own iterate and unfoldr
+-- 1.
+-- take 10 $ iterate (+1) 0
+myIterate :: (a -> a) -> a -> [a]
+myIterate f x = x : myIterate f (f x)
+
+-- 2.
+-- take 10 $ unfoldr (\b -> Just (b, b+1)) 0
+myUnfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+myUnfoldr f x = case f x of
+    Nothing -> []
+    Just (x, y) -> x : myUnfoldr f y 
+
+-- 3.
+betterIterate :: (a -> a) -> a -> [a]
+betterIterate f = myUnfoldr (\b -> Just(b, f b))
+
+
+-- Finally something other than a list
+
+data BinaryTree a = 
+    Leaf
+    | Node (BinaryTree a) a (BinaryTree a) 
+    deriving (Eq, Ord, Show)
+
+-- 1.
+unfold :: (a -> Maybe (a,b,a)) -> a -> BinaryTree b
+unfold f b = case f b of
+    Nothing -> Leaf
+    Just (x, y, z) -> Node (unfold f x) y (unfold f z)
+
+-- 2.
+treeBuild :: Integer -> BinaryTree Integer
+treeBuild n = unfold f 0
+    where f m
+            | m == n = Nothing
+            | otherwise = Just (m + 1, m, m + 1)
